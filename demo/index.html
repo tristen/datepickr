@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+  <title>Datepickr | The do it yourself date picker</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <link href='../dist/datepickr.css' rel='stylesheet'>
+  <link href='demo.css' rel='stylesheet'>
+</head>
+<body onload='prettyPrint()'>
+  <div class='limiter'>
+    <a href='https://github.com/tristen/datepickr/'><img style='position: absolute; top: 0; right: 0; border: 0;' src='https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67' alt='Fork me on GitHub' data-canonical-src='https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png'></a>
+    <header>
+      <h1>Datepickr</h1>
+      <h4 class='quiet'>The do it yourself date picker.</h4>
+      <p>A small &amp; simple date picker in JavaScript. Has no dependencies and supports <a href='#days-selected'>active days</a>, <a href='#days-inactive'>inactive days</a>, <a href='#half-days'>half days</a>, <a href='#days-start'>custom start days</a>, <a href='#translated'>translation</a>, and <a href='#browserify'>node/browserify</a>.</p>
+    </header>
+
+<figure>
+<h4 id='basic'>Basic example</h4>
+<div id='datepickr' class='fill-white keyline-all pad1'></div>
+<pre id='output' class='pad1 output'>[]</pre>
+<pre class='pad1 round prettyprint'>
+&lt;div id='datepickr'&gt;&lt;/div&gt;
+&lt;pre id='output'&gt;[]&lt;/pre&gt;
+&lt;script src='datepickr.min.js'&gt;&lt;/script&gt;
+
+&lt;script&gt;
+var el = document.getElementById('datepickr');
+var output = document.getElementById('output');
+
+new Datepickr(el, function(res) {
+  output.textContent = JSON.stringify(res);
+});
+&lt;/script&gt;
+</pre>
+</figure>
+
+<figure>
+<h4 id='days-selected'>Days selected on load</h4>
+<div id='datepickr-activedays' class='fill-white keyline-all pad1 space-bottom2'></div>
+<pre class='pad1 round prettyprint'>
+var d = new Date();
+
+new Datepickr(document.getElementById('datepickr-activedays'), function(res) {
+  console.log(res);
+}, {
+  activeDays: [
+    [new Date(d.getFullYear(), d.getMonth(), 1).getTime(), 1],
+    [new Date(d.getFullYear(), d.getMonth(), 2).getTime(), 1],
+    [new Date(d.getFullYear(), d.getMonth(), 12).getTime(), 1],
+    [new Date(d.getFullYear(), d.getMonth(), 13).getTime(), 1],
+    [new Date(d.getFullYear(), d.getMonth(), 22).getTime(), 1],
+  ]
+});
+</pre>
+</figure>
+
+<figure>
+<h4 id='days-inactive'>Inactive past, weekends, &amp; custom days</h4>
+<div id='datepickr-omit' class='fill-white keyline-all pad1 space-bottom2'></div>
+<pre class='pad1 round prettyprint'>
+var d = new Date();
+// If the month is December, roll back to January as next month.
+var month = ((d.getMonth() + 1) === 12) ? -1 : d.getMonth();
+
+new Datepickr(document.getElementById('datepickr-omit'), function(res) {
+    console.log(res);
+}, {
+  omitPast: true,
+  omitWeekends: true,
+  // Omit the 12th, 13th &amp; 22nd of the following month
+  // if they don't already fall on a weekend.
+  omitDays: [
+    new Date(d.getFullYear(), month + 1, 12).getTime(),
+    new Date(d.getFullYear(), month + 1, 13).getTime(),
+    new Date(d.getFullYear(), month + 1, 22).getTime()
+  ]
+});
+</pre>
+</figure>
+
+<figure>
+<h4 id='half-days'>Select half days</h4>
+<div id='datepickr-half' class='fill-white keyline-all pad1'></div>
+<pre id='output-half' class='pad1 output'>[]</pre>
+<pre class='pad1 round prettyprint'>
+&lt;div id='datepickr-half'&gt;&lt;/div&gt;
+&lt;pre id='output-half'&gt;[]&lt;/pre&gt;
+&lt;script src='datepickr.min.js'&gt;&lt;/script&gt;
+
+&lt;script&gt;
+var el = document.getElementById('datepickr-half');
+var output = document.getElementById('output-half');
+
+new Datepickr(el, function(res) {
+  output.textContent = JSON.stringify(res);
+}, {
+  halfDay: true
+});
+&lt;/script&gt;
+</pre>
+</figure>
+
+<figure>
+<h4 id='days-start'>Start on a particular year or month</h4>
+<div id='datepickr-start' class='fill-white keyline-all pad1 space-bottom2'></div>
+<pre class='pad1 round prettyprint'>
+new Datepickr(document.getElementById('datepickr-start'), function(res) {
+  console.log(res);
+}, {
+  startYear: 2015,
+  startMonth: 7
+});
+</pre>
+</figure>
+
+<figure>
+<h4 id='translated'>Translated</h4>
+<div id='datepickr-translate' class='fill-white keyline-all pad1 space-bottom2'></div>
+<pre class='pad1 round prettyprint'>
+new Datepickr(document.getElementById('datepickr-translate'), function(res) {
+  console.log(res);
+}, {
+  weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+  months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
+});
+</pre>
+</figure>
+
+<figure>
+<h4 id='browserify'>Node/Browserify</h4>
+<pre class='pad1 round prettyprint'>
+// npm install datepickr
+var datepickr = require('datepickr')
+
+datepickr(el, function(res) {
+  console.log(res);
+});
+</pre>
+</figure>
+
+  </div>
+  <script src='../dist/datepickr.js'></script>
+  <script src='prettify.js'></script>
+  <script>
+    var d = new Date();
+    var month = ((d.getMonth() + 1) === 12) ? -1 : d.getMonth();
+    var el = document.getElementById('datepickr');
+    var output = document.getElementById('output');
+    new Datepickr(el, function(res) {
+      output.textContent = JSON.stringify(res);
+    });
+
+    // Active days
+    new Datepickr(document.getElementById('datepickr-activedays'), function(res) {
+        console.log(res);
+    }, {
+      activeDays: [
+        [new Date(d.getFullYear(), d.getMonth(), 1).getTime(), 1],
+        [new Date(d.getFullYear(), d.getMonth(), 2).getTime(), 1],
+        [new Date(d.getFullYear(), d.getMonth(), 12).getTime(), 1],
+        [new Date(d.getFullYear(), d.getMonth(), 13).getTime(), 1],
+        [new Date(d.getFullYear(), d.getMonth(), 22).getTime(), 1],
+      ]
+    });
+
+    // Omit days
+    new Datepickr(document.getElementById('datepickr-omit'), function(res) {
+        console.log(res);
+    }, {
+      omitPast: true,
+      omitWeekends: true,
+      omitDays: [
+        new Date(d.getFullYear(), month + 1, 12).getTime(),
+        new Date(d.getFullYear(), month + 1, 13).getTime(),
+        new Date(d.getFullYear(), month + 1, 22).getTime()
+      ]
+    });
+
+    // Half days
+    var outputHalf = document.getElementById('output-half')
+    new Datepickr(document.getElementById('datepickr-half'), function(res) {
+      outputHalf.textContent = JSON.stringify(res);
+    }, {
+      halfDay: true
+    });
+
+    // Start date
+    new Datepickr(document.getElementById('datepickr-start'), function(res) {
+      console.log(res);
+    }, {
+      startYear: 2015,
+      startMonth: 7
+    });
+
+    // Translated
+    new Datepickr(document.getElementById('datepickr-translate'), function(res) {
+      console.log(res);
+    }, {
+      weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+      months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
+    });
+  </script>
+  <script>
+  var analytics=analytics||[];(function(){var e=['identify','track','trackLink','trackForm','trackClick','trackSubmit','page','pageview','ab','alias','ready','group'],t=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var n=0;n<e.length;n++)analytics[e[n]]=t(e[n])})(),analytics.load=function(e){var t=document.createElement('script');t.type='text/javascript',t.async=!0,t.src=('https:'===document.location.protocol?'https://':'http://')+'d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/'+e+'/analytics.min.js';var n=document.getElementsByTagName('script')[0];n.parentNode.insertBefore(t,n)};
+  analytics.load('ppyh4q5xb3');
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+.date-pickr .months {
+	text-align:center;
+  padding:0 0 10px;
+  }
+.date-pickr .prev,
+.date-pickr .next {
+	text-decoration:none;
+  display:block;
+  width:20px;
+  height:20px;
+  border-radius:3px;
+  background-size:20px 20px;
+  }
+.date-pickr .prev {
+  background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAbrwAAG68BXhqRHAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFkSURBVFiF7Za9SgNBFEbPnQSfR99gZ0p7RY3GoI8giJ1a+wxKNEH0BaxkZ3sbwcJ3kbjXIruQpBFyx1/mdLvFx+HOfJcRVeU3435a4DOyoJUsaCULWsmCVrKglW7qwKIoNoAToCsiRzHGR0teUkHv/T5wJSLtyVwAa5bMZIJFUewxL4eqvllzk9zBEMIOMJyVAybOuXNrtnmC3vst4GZB7h3YLcvywZpvmmAIYRMYA532n6rWItKPMd5b5QBk2Re1934VeGLmFFS1BgZVVY1SyIFtgmcsyInIYUo5+AOL2jrBSfshIk5VL5t1k4ylBWOMzyLSY9pYYCoJDJu1k4SlS9LSrJm5JjOV7qVosvkOxhjvRKTfNLilA4xDCOvW/CQlKcvyFhgsSHbruj61ZidrcVVVIxE5mJUUkRVrbtI1E2O8ds5tAy/Aq6oeWzPNJflq/vWi/hayoJUsaCULWsmCVn694AcqPnJcb6V6uQAAAABJRU5ErkJggg==);
+	float:left;
+  }
+.date-pickr .next {
+  background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAbrwAAG68BXhqRHAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFeSURBVFiF7Zi9SkQxEEbPBP8extJOhCSlsCBWthYri7I+wWIh2wriotiIliIK9rIk6AP4AD6JIjc2LsSLINwJKJLTZYqPw9yZEK6klPjLmN8W+IkqqKUKaqmCWqqgliqoZU4b4L1fTSkdA0vAUQjhSm2Voe5gSmkMrADLwKW1dqi2yigh+JafReTEObenzZ1RYgbHwGurNnHODQpk6wVjjE8istnqpABn3vsdbb6UerBaa3sicgfMZ+UE9EMIF11ziwkCOOc2gBtaksYYO51OH7tkFr0HQwj3IrIFvGdlaZrmsGvm/7+ocz4/8XUrNxljDrpmFuugtbbHN/MH9LvOHxQS9N6vA7e05ERkoNlgKLDF1to1EXkAFnM5YDeEcK4Kp0wHR3yVAxiWkIMCSyIiC/k5pbQfYzzV5s5Qd1BERsAz8AJsxxgnaqs8v/6bUVIFtVRBLVVQSxXUUgW1fAD4a2eDqL4q7wAAAABJRU5ErkJggg==);
+	float:right;
+  }
+.date-pickr .prev:hover,
+.date-pickr .next:hover {
+  background-color:rgba(0,0,0,0.10);
+  }
+.date-pickr table {
+	width:100%;
+	border-collapse:collapse;
+  border:none;
+	padding:0;
+  }
+.date-pickr th {
+	text-align:center;
+  border:none;
+  }
+.date-pickr td {
+	text-align:right;
+	padding:0;
+	width:14.3%;
+  height:20px;
+  line-height:20px;
+  border:none;
+  }
+.date-pickr td a {
+	color:#404040;
+	color:rgba(0,0,0,0.75);
+	text-decoration:none;
+	padding:3px;
+	display:block;
+	border:1px solid #fff;
+  position:relative;
+  overflow:hidden;
+  }
+  .date-pickr td a.quiet,
+  .date-pickr td a.quiet:hover {
+    color:#999;
+    color:rgba(0,0,0,0.25);
+    cursor:default;
+    border-color:#fff;
+    }
+.date-pickr .today {
+  background-color:#ffffaa;
+  }
+.date-pickr td a:hover {
+  border-color:#1F90FF;
+  color:#1F90FF;
+  }
+.date-pickr td a.active {
+  background-color:#1F90FF;
+  border-color:#1F90FF;
+  color:#fff;
+  }
+.date-pickr td a.active.halfday {
+  background-color:#fff;
+  color:#1F90FF;
+  }
+  .date-pickr td a.active.halfday:before {
+    content:'';
+    background-color:#1F90FF;
+    display:block;
+    position:absolute;
+    height:100%;
+    width:100%;
+    top:0;
+    left:-50%;
+    }
+
+.date-pickr td a.active:hover {
+  border-color:rgba(0,0,0,0.25);
+  }
+.date-pickr td a.active.halfday:hover {
+  border-color:#1F90FF;
+  }

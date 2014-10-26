@@ -1,0 +1,110 @@
+*,
+*:after,
+*:before {
+  -webkit-box-sizing:border-box;
+     -moz-box-sizing:border-box;
+          box-sizing:border-box;
+  }
+body {
+  background-color:#f8f8f8;
+  font:16px/22px 'Helvetica Neue', Helvetica, sans-serif;
+  margin:0;
+  padding:0;
+  }
+header {
+  text-align:center;
+  display:block;
+  margin:80px 0 40px;
+  }
+h1 {
+  font-size:36px;
+  line-height:28px;
+  margin:0 0 10px;
+  }
+h4 {
+  font-size:20px;
+  line-height:26px;
+  font-weight:500;
+  margin:0 0 20px;
+  }
+a {
+  text-decoration:none;
+  color:#1f90ff;
+  }
+pre {
+  font:14px/20px courier;
+  background-color:#fff;
+  overflow:auto;
+  margin:0 0 20px;
+  }
+figure {
+  display:block;
+  margin:0 0 40px;
+  }
+  figure h4 {
+    display:block;
+    text-align:center;
+    }
+
+/* Class decorators */
+.limiter {
+  max-width:500px;
+  margin:40px auto;
+  }
+.fill-white {
+  background-color:#fff;
+  }
+.quiet {
+  color:rgba(0,0,0,0.5);
+  }
+.keyline-all {
+  border:1px solid rgba(0,0,0,0.10);
+  }
+.round {
+  border-radius:3px;
+  }
+.pad0 {
+  padding:5px;
+  }
+.pad1 {
+  padding:10px;
+  }
+.space-bottom2 {
+  margin-bottom:20px;
+  }
+
+.output {
+  background:#404040;
+  color:#fff;
+  }
+
+/* prettyprint */
+@media screen {
+  .com { color: #999988; }  /* a comment */
+  .lit, .typ { color: #445588; } /* literal, type */
+  .tag { color: navy; } /* tag */
+  .atv, str { color: #dd1144; } /* attribute, string */
+  .dec, .clo, .opn, .pun, .kwd { color: #333333; } /* a declaration, close bracket, open bracket, punctuation, keyword */
+  .var, .atn { color: teal; } /* variable, markup attribute */
+  .fun { color: #990000; } /* functione */
+}
+/* Use higher contrast and text-weight for printable form. */
+@media print, projection {
+  .str { color: #060; }
+  .kwd { color: #006; font-weight: bold; }
+  .com { color: #600; font-style: italic; }
+  .typ { color: #404; font-weight: bold; }
+  .lit { color: #044; }
+  .pun, .opn, .clo  { color: #440; }
+  .tag { color: #006; font-weight: bold; }
+  .atn { color: #404; }
+  .atv { color: #060; }
+}
+/* Style */
+pre.prettyprint {
+  background: white;
+  font-family: Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 12px 10px;
+  }

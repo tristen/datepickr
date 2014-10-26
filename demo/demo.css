@@ -15,23 +15,31 @@ body {
 header {
   text-align:center;
   display:block;
-  margin:80px 0 40px;
+  margin:80px 0 20px;
   }
 h1 {
   font-size:36px;
   line-height:28px;
-  margin:0 0 10px;
+  margin:0;
   }
 h4 {
   font-size:20px;
   line-height:26px;
   font-weight:500;
-  margin:0 0 20px;
+  margin:0;
+  padding:20px 0;
+  }
+p {
+  margin:0;
   }
 a {
   text-decoration:none;
   color:#1f90ff;
   }
+  a:hover {
+    color:#176cbf;
+    text-decoration:underline;
+    }
 pre {
   font:14px/20px courier;
   background-color:#fff;
@@ -40,7 +48,7 @@ pre {
   }
 figure {
   display:block;
-  margin:0 0 40px;
+  margin:0 0 20px;
   }
   figure h4 {
     display:block;

@@ -2,7 +2,7 @@ Datepickr - The do it yourself date picker.
 ---
 
 Datepickr is just a date picker. It makes as no assumptions how it's shown on
-the page. [__See demo__](http://tristen.ca/datepickr/).
+the page. [__See demo__](http://tristen.ca/datepickr/demo/).
 
 - Need to show/hide it on an input field? __Do it yourself__.
 - Need to have it insert one date after selection? __Do it yourself__.
@@ -52,7 +52,7 @@ whether halfdays are enabled as an option or not.
 | omitDays | Empty array | Pass a timestamp array of dates to prevent the selection of |
 | activeDays | Empty array | Pass an array of arrayed dates ie. `[[[1413950400000,1],[1414468800000,0.5]` that are auto selected on load |
 
-To see examples of each option [see the demos](http://tristen.ca/datepickr/).
+To see examples of each option [see the demos](http://tristen.ca/datepickr/demo/).
 
 ### Use with node or browserify via `npm install datepickr`.
 

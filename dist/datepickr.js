@@ -325,14 +325,14 @@ var Datepickr = (function() {
 
         // Normalize any active days by rounding them.
         if (this.config.activeDays.length) {
-            this.config.activeDays.map(function(d) {
+            this.config.activeDays = this.config.activeDays.map(function(d) {
                 return [roundDate(new Date(d[0])).getTime(), d[1]];
             });
         }
 
         // Normalize any omitted days by rounding them.
         if (this.config.omitDays.length) {
-            this.config.omitDays.map(function(d) {
+            this.config.omitDays = this.config.omitDays.map(function(d) {
                 return [roundDate(new Date(d[0])).getTime(), d[1]];
             });
         }

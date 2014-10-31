@@ -333,7 +333,7 @@ var Datepickr = (function() {
         // Normalize any omitted days by rounding them.
         if (this.config.omitDays.length) {
             this.config.omitDays = this.config.omitDays.map(function(d) {
-                return [roundDate(new Date(d[0])).getTime(), d[1]];
+                return roundDate(new Date(d)).getTime();
             });
         }
 

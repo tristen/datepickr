@@ -1,7 +1,7 @@
-Datepickr - The do it yourself date picker.
+Datepickr
 ---
 
-Datepickr is just a date picker. It makes as no assumptions how it's shown on
+The do it yourself date picker. It makes as no assumptions how it's shown on
 the page. [__See demo__](http://tristen.ca/datepickr/demo/).
 
 - Need to show/hide it on an input field? __Do it yourself__.
@@ -24,7 +24,7 @@ the page. [__See demo__](http://tristen.ca/datepickr/demo/).
 
 ### API
 
-### `new Datepickr(element, callback, options);`
+#### `new Datepickr(element, callback, options);`
 
 The callback returns an array of arrayed dates whenever a date is selected.
 
@@ -54,9 +54,10 @@ whether halfdays are enabled as an option or not.
 
 To see examples of each option [see the demos](http://tristen.ca/datepickr/demo/).
 
-### Use with node or browserify via `npm install datepickr`.
+### Use with node or browserify.
 
 ``` js
+// npm install datepickr
 var datepickr = require('datepickr')
 
 datepickr(el, function(res) {

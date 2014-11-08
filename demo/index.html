@@ -13,7 +13,7 @@
     <header>
       <h1>Datepickr</h1>
       <h4 class='quiet'>The do it yourself date picker.</h4>
-      <p>A small &amp; simple date picker in JavaScript. Has no dependencies and supports <a href='#days-selected'>active days</a>, <a href='#days-inactive'>inactive days</a>, <a href='#half-days'>half days</a>, <a href='#days-start'>custom start days</a>, <a href='#translated'>translation</a>, and <a href='#browserify'>node/browserify</a>.</p>
+      <p>A small &amp; simple date picker in JavaScript. Has no dependencies and supports <a href='#days-selected'>active days</a>, <a href='#days-inactive'>inactive days</a>, <a href='#half-days'>half days</a>, <a href='#days-minmax'>min/max dates</a>,  <a href='#days-start'>custom start days</a>, <a href='#translated'>translation</a>, and <a href='#browserify'>node/browserify</a>.</p>
     </header>
 
 <figure>
@@ -103,6 +103,23 @@ new Datepickr(el, function(res) {
 </figure>
 
 <figure>
+<h4 id='days-minmax'>Set a min or max</h4>
+<div id='datepickr-minmax' class='fill-white keyline-all pad1 space-bottom2'></div>
+<pre class='pad1 round prettyprint'>
+// Set a min and max to the current year.
+var now = new Date();
+var year = now.getFullYear();
+
+new Datepickr(document.getElementById('datepickr-minmax'), function(res) {
+  console.log(res);
+}, {
+  minDate: new Date(year, 0).getTime(),
+  maxDate: new Date(year, 11).getTime()
+});
+</pre>
+</figure>
+
+<figure>
 <h4 id='days-start'>Start on a particular year or month</h4>
 <div id='datepickr-start' class='fill-white keyline-all pad1 space-bottom2'></div>
 <pre class='pad1 round prettyprint'>
@@ -184,6 +201,17 @@ datepickr(el, function(res) {
       outputHalf.textContent = JSON.stringify(res);
     }, {
       halfDay: true
+    });
+
+    // Min/max dates
+    var now = new Date();
+    var year = now.getFullYear();
+
+    new Datepickr(document.getElementById('datepickr-minmax'), function(res) {
+      console.log(res);
+    }, {
+      minDate: new Date(year, 0).getTime(),
+      maxDate: new Date(year, 11).getTime()
     });
 
     // Start date

@@ -37,8 +37,10 @@ var Datepickr = (function() {
     };
 
     function calendarClick(e) {
+        var time = new Date(this.year, this.month).getTime();
         switch (e.target.getAttribute('data-target')) {
             case 'month-prev':
+                if (this.config.minDate && time <= this.config.minDate) return;
                 this.month--;
                 if (this.month < 0) {
                     this.year--;
@@ -47,6 +49,7 @@ var Datepickr = (function() {
                 rebuildCalendar.call(this);
                 break;
             case 'month-next':
+                if (this.config.maxDate && time >= this.config.maxDate) return;
                 this.month++;
                 if (this.month > 11) {
                     this.year++;
@@ -308,6 +311,8 @@ var Datepickr = (function() {
             months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             startYear: date.current.year(),
             startMonth: date.current.month.integer(),
+            minDate: null,
+            maxDate: null,
             halfDay: false,
             omitPast: false,
             omitWeekends: false,

@@ -13,7 +13,7 @@
     <header>
       <h1>Datepickr</h1>
       <h4 class='quiet'>The do it yourself date picker.</h4>
-      <p>A small &amp; simple date picker in JavaScript. Has no dependencies and supports <a href='#days-selected'>active days</a>, <a href='#days-inactive'>inactive days</a>, <a href='#half-days'>half days</a>, <a href='#days-minmax'>min/max dates</a>,  <a href='#days-start'>custom start days</a>, <a href='#translated'>translation</a>, and <a href='#browserify'>node/browserify</a>.</p>
+      <p>A small &amp; simple date picker in JavaScript. Has no dependencies and supports <a href='#days-selected'>active days</a>, <a href='#days-inactive'>inactive days</a>, <a href='#half-days'>half days</a>, <a href='#days-minmax'>min/max dates</a>, <a href='#days-start'>custom start days</a>, <a href='#days-range'>Select date ranges</a>, <a href='#translated'>translation</a>, and <a href='#browserify'>node/browserify</a>.</p>
     </header>
 
 <figure>
@@ -133,6 +133,18 @@ new Datepickr(document.getElementById('datepickr-start'), function(res) {
 </figure>
 
 <figure>
+<h4 id='days-range'>Auto select a date range</h4>
+<div id='datepickr-range' class='fill-white keyline-all pad1 space-bottom2'></div>
+<pre class='pad1 round prettyprint'>
+new Datepickr(document.getElementById('datepickr-range'), function(res) {
+  console.log(res);
+}, {
+  rangeSelect: true
+});
+</pre>
+</figure>
+
+<figure>
 <h4 id='translated'>Translated</h4>
 <div id='datepickr-translate' class='fill-white keyline-all pad1 space-bottom2'></div>
 <pre class='pad1 round prettyprint'>
@@ -220,6 +232,13 @@ datepickr(el, function(res) {
     }, {
       startYear: 2015,
       startMonth: 7
+    });
+
+    // Date range
+    new Datepickr(document.getElementById('datepickr-range'), function(res) {
+      console.log(res);
+    }, {
+      rangeSelect: true
     });
 
     // Translated

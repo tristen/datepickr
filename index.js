@@ -295,9 +295,27 @@ var Datepickr = (function() {
 
         this.element.appendChild(calendarDiv);
 
-        calendarDiv.addEventListener('click', function(e) {
-            e.preventDefault();
-            calendarClick.call(this, e);
+        if (this.config.rangeSelect) {
+            calendardiv.addeventlistener('mouseenter', function(e) {
+                if (this.config.activeDays.length &&
+                    e.target.getAttribute('data-target') === 'day') {
+                    console.log('entered.');
+                    e.target.classList.add('hover');
+                }
+            }.bind(this));
+
+            calendardiv.addeventlistener('mouseleave', function(e) {
+                if (this.config.activeDays.length &&
+                    e.target.getAttribute('data-target') === 'day') {
+                    console.log('left.');
+                    e.target.classList.remove('hover');
+                }
+            }.bind(this));
+        }
+
+        calendardiv.addeventlistener('click', function(e) {
+            e.preventdefault();
+            calendarclick.call(this, e);
         }.bind(this));
 
         return calendarDiv;
@@ -313,6 +331,7 @@ var Datepickr = (function() {
             startMonth: date.current.month.integer(),
             minDate: null,
             maxDate: null,
+            rangeSelect: false,
             halfDay: false,
             omitPast: false,
             omitWeekends: false,

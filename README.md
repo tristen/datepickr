@@ -46,6 +46,8 @@ whether halfdays are enabled as an option or not.
 | months | An array of month strings in English | Option for translation |
 | startYear | Current year | Start the date picker on a particular year |
 | startMonth | Current month | Start the date picker on a particular month |
+| minDate | null | a timestamp representing a maximum date the pager should page |
+| maxDate | null | a timestamp representing a minimum date the pager should page |
 | halfDay | false | Enables halfday selection of dates |
 | omitPast | false | Prevent selecting days in the past |
 | omitWeekends | false | Prevent selecting weekends |

@@ -61,7 +61,28 @@ var Datepickr = (function() {
                 var today = new Date().getTime();
                 var d = new Date(this.year, this.month, e.target.textContent).getTime();
                 var c = e.target.classList;
-                if (this.config.halfDay) {
+
+                if (this.config.rangeSelect) {
+                    if (this.config.activeDays.length) {
+                        var range = rangeSelect.call(this, e.target);
+                        range.forEach(function(day, i) {
+                            day.classList.remove('active');
+                            this.config.activeDays.push([
+                               new Date(this.year, this.month, day.textContent).getTime(), 1
+                            ]);
+
+                            // Set active the first + last item.
+                            if (i === 0 || i === (range.length - 1)) {
+                                day.classList.add('active');
+                            }
+
+                        }.bind(this));
+                    } else {
+                        c.add('active');
+                        this.config.activeDays.push([d, 1]);
+                    }
+
+                } else if (this.config.halfDay) {
                     if (c.contains('halfday')) {
                         c.remove('halfday');
                         this.config.activeDays = this.config.activeDays.map(function(date) {
@@ -103,7 +124,7 @@ var Datepickr = (function() {
         days.forEach(function(day) {
             day.addEventListener('mouseenter', function(e) {
                 if (this.config.activeDays.length) {
-                    rangeSelect.call(this, e.target);    
+                    rangeSelect.call(this, e.target);
                 }
             }.bind(this));
         }.bind(this));
@@ -123,9 +144,9 @@ var Datepickr = (function() {
         }.bind(this));
 
         // Slice days between them.
-        indexes = days.slice(indexes[0], indexes[1]);
+        indexes = days.slice(indexes[0], (indexes[1] + 1));
         indexes.forEach(function(d) {
-          d.classList.add('hover');
+            d.classList.add('hover');
         });
 
         return indexes;
@@ -221,7 +242,7 @@ var Datepickr = (function() {
 
     function buildCurrentMonth(month, year, months) {
         return buildNode('strong', {
-            class: 'small'
+            class: 'month'
         }, date.month.string(month, months) + ' ' + year);
     }
 

@@ -98,6 +98,49 @@ var Datepickr = (function() {
         }
     }
 
+    function calendarHover() {
+        var days = daysSelect.call(this);
+        days.forEach(function(day) {
+            day.addEventListener('mouseenter', function(e) {
+                if (this.config.activeDays.length) {
+                    rangeSelect.call(this, e.target);    
+                }
+            }.bind(this));
+        }.bind(this));
+    }
+
+    function rangeSelect(el) {
+        var days = daysSelect.call(this);
+        var indexes = [];
+
+        // Find out indexes.
+        days.forEach(function(d, i) {
+            d.classList.remove('hover');
+            if (d.textContent === new Date(this.config.activeDays[0][0]).getDate().toString() ||
+                d.textContent === el.textContent) {
+                indexes.push(i);
+            }
+        }.bind(this));
+
+        // Slice days between them.
+        indexes = days.slice(indexes[0], indexes[1]);
+        indexes.forEach(function(d) {
+          d.classList.add('hover');
+        });
+
+        return indexes;
+    }
+
+    function nodesToArray(nodeList) {
+        var list = [];
+        for (var i = 0, ll = nodeList.length; i != ll; list.push(nodeList[i++]));
+        return list;
+    }
+
+    function daysSelect() {
+        return nodesToArray(this.element.querySelectorAll('a[data-target="day"]'));
+    }
+
     function buildNode(nodeName, attributes, content) {
         if (!(nodeName in buildCache)) {
             buildCache[nodeName] = document.createElement(nodeName);
@@ -173,32 +216,13 @@ var Datepickr = (function() {
 
         this.currentMonth.textContent = date.month.string(this.month, this.config.months) + ' ' + this.year;
         this.calendarBody.appendChild(buildDays.call(this, firstOfMonth, numDays, this.month, this.year));
+        if (this.config.rangeSelect) calendarHover.call(this);
     }
 
-    function buildCurrentMonth(config, month, year, months) {
+    function buildCurrentMonth(month, year, months) {
         return buildNode('strong', {
             class: 'small'
         }, date.month.string(month, months) + ' ' + year);
-    }
-
-    function buildMonths(config, month, year) {
-        var months = buildNode('div', {
-                'class': 'months'
-            });
-        var prevMonth = buildNode('a', {
-                'class': 'icon next button short quiet',
-                'data-target': 'month-next',
-                'href': '#'
-            });
-        var nextMonth = buildNode('a', {
-                'class': 'icon prev button short quiet',
-                'data-target': 'month-prev',
-                'href': '#'
-            });
-
-        months.appendChild(prevMonth);
-        months.appendChild(nextMonth);
-        return months;
     }
 
     function buildDays(firstOfMonth, numDays, month, year) {
@@ -277,9 +301,22 @@ var Datepickr = (function() {
             class: 'date-pickr'
         });
 
-        this.currentMonth = buildCurrentMonth(this.config, this.month, this.year, this.config.months);
-        var months = buildMonths(this.config, this.month, this.year);
-        months.appendChild(this.currentMonth);
+        this.currentMonth = buildCurrentMonth(this.month, this.year, this.config.months);
+
+        var prevMonthLink = buildNode('a', {
+                'class': 'icon next button short quiet',
+                'data-target': 'month-next',
+                'href': '#'
+            });
+        var nextMonthLink = buildNode('a', {
+                'class': 'icon prev button short quiet',
+                'data-target': 'month-prev',
+                'href': '#'
+            });
+
+        calendarDiv.appendChild(prevMonthLink);
+        calendarDiv.appendChild(nextMonthLink);
+        calendarDiv.appendChild(this.currentMonth);
 
         var calendar = buildNode('table', {
             class: 'small'
@@ -288,34 +325,16 @@ var Datepickr = (function() {
         }, buildWeekdays(this.config.weekdays))));
         this.calendarBody = buildNode('tbody');
         this.calendarBody.appendChild(buildDays.call(this, firstOfMonth, numDays, this.month, this.year));
-        calendar.appendChild(this.calendarBody);
 
-        calendarDiv.appendChild(months);
         calendarDiv.appendChild(calendar);
-
+        calendar.appendChild(this.calendarBody);
         this.element.appendChild(calendarDiv);
 
-        if (this.config.rangeSelect) {
-            calendardiv.addeventlistener('mouseenter', function(e) {
-                if (this.config.activeDays.length &&
-                    e.target.getAttribute('data-target') === 'day') {
-                    console.log('entered.');
-                    e.target.classList.add('hover');
-                }
-            }.bind(this));
+        if (this.config.rangeSelect) calendarHover.call(this);
 
-            calendardiv.addeventlistener('mouseleave', function(e) {
-                if (this.config.activeDays.length &&
-                    e.target.getAttribute('data-target') === 'day') {
-                    console.log('left.');
-                    e.target.classList.remove('hover');
-                }
-            }.bind(this));
-        }
-
-        calendardiv.addeventlistener('click', function(e) {
-            e.preventdefault();
-            calendarclick.call(this, e);
+        calendarDiv.addEventListener('click', function(e) {
+            e.preventDefault();
+            calendarClick.call(this, e);
         }.bind(this));
 
         return calendarDiv;

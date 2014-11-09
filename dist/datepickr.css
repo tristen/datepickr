@@ -1,5 +1,6 @@
-.date-pickr .months {
+.date-pickr .month {
   text-align:center;
+  display:block;
   padding:0 0 10px;
   }
 .date-pickr .prev,
@@ -61,7 +62,11 @@
 .date-pickr .today {
   background-color:#ffffaa;
   }
-.date-pickr td a.hover,
+.date-pickr td a.hover {
+  background-color:#ebf5ff;
+  border-color:#ebf5ff;
+  color:#1F90FF;
+  }
 .date-pickr td a:hover {
   border-color:#1F90FF;
   color:#1F90FF;

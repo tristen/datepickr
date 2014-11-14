@@ -64,10 +64,12 @@ var Datepickr = (function() {
 
                 if (this.config.rangeSelect) {
                     if (this.config.activeDays.length) {
+                        var activeRange = [];
                         var range = rangeSelect.call(this, e.target);
+                        var days = daysSelect.call(this);
+                        days.forEach(function(d) { d.classList.remove('active'); });
                         range.forEach(function(day, i) {
-                            day.classList.remove('active');
-                            this.config.activeDays.push([
+                            activeRange.push([
                                new Date(this.year, this.month, day.textContent).getTime(), 1
                             ]);
 
@@ -75,8 +77,8 @@ var Datepickr = (function() {
                             if (i === 0 || i === (range.length - 1)) {
                                 day.classList.add('active');
                             }
-
                         }.bind(this));
+                        this.config.activeDays = activeRange;
                     } else {
                         c.add('active');
                         this.config.activeDays.push([d, 1]);
@@ -131,20 +133,31 @@ var Datepickr = (function() {
     }
 
     function rangeSelect(el) {
+        var pos = parseInt(el.textContent, 10);
         var days = daysSelect.call(this);
         var indexes = [];
 
-        // Find out indexes.
+        // Find out start + end indexes.
         days.forEach(function(d, i) {
             d.classList.remove('hover');
-            if (d.textContent === new Date(this.config.activeDays[0][0]).getDate().toString() ||
-                d.textContent === el.textContent) {
+            if (d.classList.contains('active')) {
                 indexes.push(i);
             }
         }.bind(this));
 
         // Slice days between them.
-        indexes = days.slice(indexes[0], (indexes[1] + 1));
+        if (indexes.length > 1) {
+            if (pos <= indexes[0]) {
+                indexes = days.slice(pos - 1, indexes[0] + 1);
+            } else if (pos > indexes[1]) {
+                indexes = days.slice(indexes[1], pos);
+            } else {
+                indexes = days.slice(indexes[0], pos);
+            }
+        } else {
+            indexes = days.slice(indexes[0], pos);
+        }
+
         indexes.forEach(function(d) {
             d.classList.add('hover');
         });

@@ -63,14 +63,19 @@ var Datepickr = (function() {
                 var c = e.target.classList;
 
                 if (this.config.rangeSelect) {
-                    if (this.config.activeDays.length) {
+                    var days = daysSelect.call(this);
+                    if (c.contains('active')) {
+                        // Clear everything out. Start from scratch.
+                        c.remove('active');
+                        this.config.activeDays = [];
+                        days.forEach(function(d) { d.classList.remove('hover');  });
+                    } else if (this.config.activeDays.length) {
                         var activeRange = [];
                         var range = rangeSelect.call(this, e.target);
-                        var days = daysSelect.call(this);
                         days.forEach(function(d) { d.classList.remove('active'); });
                         range.forEach(function(day, i) {
                             activeRange.push([
-                               new Date(this.year, this.month, day.textContent).getTime(), 1
+                                new Date(this.year, this.month, day.textContent).getTime(), 1
                             ]);
 
                             // Set active the first + last item.
@@ -147,7 +152,9 @@ var Datepickr = (function() {
 
         // Slice days between them.
         if (indexes.length > 1) {
-            if (pos <= indexes[0]) {
+            if (el.classList.contains('active')) {
+                indexes = days.slice(indexes[0], indexes[1]);
+            } else if (pos <= indexes[0]) {
                 indexes = days.slice(pos - 1, indexes[0] + 1);
             } else if (pos > indexes[1]) {
                 indexes = days.slice(indexes[1], pos);

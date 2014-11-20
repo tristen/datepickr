@@ -304,6 +304,7 @@ var Datepickr = (function() {
     }
 
     return function(el, cb, options) {
+        var datepickr = {};
         this.element = el;
         this.callback = cb;
         this.config = {
@@ -342,9 +343,20 @@ var Datepickr = (function() {
             });
         }
 
+        datepickr.options = function(options) {
+            if (options) {
+                for (var key in options) {
+                    if (this.config.hasOwnProperty(key)) {
+                        this.config[key] = options[key];
+                    }
+                }
+            }
+        }.bind(this);
+
         this.year = this.config.startYear;
         this.month = this.config.startMonth;
         buildCalendar.call(this);
+        return datepickr;
     };
 })();
 

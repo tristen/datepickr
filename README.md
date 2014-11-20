@@ -56,6 +56,16 @@ whether halfdays are enabled as an option or not.
 
 To see examples of each option [see the demos](http://tristen.ca/datepickr/demo/).
 
+### Adding/Removing options after initialization.
+
+``` js
+var pickr = new Datepickr(el);
+pickr.options({
+    halfDay: true
+});
+
+```
+
 ### Use with node or browserify.
 
 ``` js

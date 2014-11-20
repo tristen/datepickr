@@ -81,7 +81,9 @@ figure {
 .space-bottom2 {
   margin-bottom:20px;
   }
-
+.center {
+  text-align:center;
+  }
 .output {
   background:#404040;
   color:#fff;

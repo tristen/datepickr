@@ -1,6 +1,6 @@
 {
   "name": "datepickr",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A do it yourself Date picker.",
   "main": "index.js",
   "scripts": {

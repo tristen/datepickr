@@ -13,7 +13,7 @@
     <header>
       <h1>Datepickr</h1>
       <h4 class='quiet'>The do it yourself date picker.</h4>
-      <p>A small &amp; simple date picker in JavaScript. Has no dependencies and supports <a href='#days-selected'>active days</a>, <a href='#days-inactive'>inactive days</a>, <a href='#half-days'>half days</a>, <a href='#days-minmax'>min/max dates</a>, <a href='#days-start'>custom start days</a>, <a href='#days-range'>Select date ranges</a>, <a href='#translated'>translation</a>, and <a href='#browserify'>node/browserify</a>.</p>
+      <p>A small &amp; simple date picker in JavaScript. Has no dependencies and supports <a href='#days-selected'>active days</a>, <a href='#days-inactive'>inactive days</a>, <a href='#half-days'>half days</a>, <a href='#refresh'>refreshing options</a>, <a href='#days-minmax'>min/max dates</a>,  <a href='#days-start'>custom start days</a>, <a href='#days-range'>Select date ranges</a>, <a href='#translated'>translation</a>, and <a href='#browserify'>node/browserify</a>.</p>
     </header>
 
 <figure>
@@ -97,6 +97,45 @@ new Datepickr(el, function(res) {
   output.textContent = JSON.stringify(res);
 }, {
   halfDay: true
+});
+&lt;/script&gt;
+</pre>
+</figure>
+
+<figure>
+<h4 id='refresh'>
+  Refreshing options
+</h4>
+<div class='center space-bottom2'>
+  <input type='checkbox' id='toggle-refresh'>
+  <label for='toggle-refresh'>Toggle half days?</label>
+</div>
+<div id='datepickr-refresh' class='fill-white keyline-all pad1 space-bottom2'></div>
+
+<pre class='pad1 round prettyprint'>
+&lt;div id='datepickr-half'&gt;&lt;/div&gt;
+&lt;input type='checkbox' id='toggle-refresh'&gt;
+&lt;label for='toggle-refresh'&gt;Toggle half days?&lt;/label&gt;
+&lt;script src='datepickr.min.js'&gt;&lt;/script&gt;
+
+&lt;script&gt;
+var refresh = document.getElementById('datepickr-refresh');
+var toggle = document.getElementById('toggle-refresh');
+
+var pickr = new Datepickr(refresh, function(res) {
+  console.log(res);
+});
+
+toggle.addEventListener('change', function() {
+    if (this.checked) {
+        pickr.options({
+            halfDay: true
+        });
+    } else {
+        pickr.options({
+            halfDay: false
+        });
+    }
 });
 &lt;/script&gt;
 </pre>
@@ -213,6 +252,26 @@ datepickr(el, function(res) {
       outputHalf.textContent = JSON.stringify(res);
     }, {
       halfDay: true
+    });
+
+    // Refresh options
+    var refresh = document.getElementById('datepickr-refresh');
+    var toggle = document.getElementById('toggle-refresh');
+
+    var pickr = new Datepickr(refresh, function(res) {
+      console.log(res);
+    });
+
+    toggle.addEventListener('change', function() {
+        if (this.checked) {
+            pickr.options({
+                halfDay: true
+            });
+        } else {
+            pickr.options({
+                halfDay: false
+            });
+        }
     });
 
     // Min/max dates

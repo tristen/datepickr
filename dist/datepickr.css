@@ -62,7 +62,7 @@
 .date-pickr .today {
   background-color:#ffffaa;
   }
-.date-pickr td a.hover {
+.date-pickr td a.range {
   background-color:#ebf5ff;
   border-color:#ebf5ff;
   color:#1F90FF;

@@ -123,7 +123,7 @@
           }
 
           this.config.activeDays.sort(function(a, b) {
-            return a[0] > b[0];
+            return a[0] - b[0];
           });
 
           this.callback(this.config.activeDays);
@@ -314,7 +314,6 @@
         } else if (this.config.omitPast && isPast(year, month, i) ||
           this.config.omitWeekends && isWeekend(year, month, i) ||
           this.config.omitDays && this.config.omitDays.length && isOmitted.call(this, year, month, i)) {
-
           klass = 'fill-light quiet';
           omit = true;
         } else {
@@ -323,11 +322,16 @@
 
         // If any dates were passed set day as active.
         if (this.config.activeDays.length) {
-          this.config.activeDays.forEach(function(d) {
+          var active = this.config.activeDays;
+          active.forEach(function(d, index) {
             if (roundDate(new Date(d[0])).getTime() === new Date(year, month, i).getTime()) {
-              klass += (d[1] === 1) ? ' active' : ' halfday active';
+              if (this.config.rangeSelect) {
+                klass += (index === 0 || index === (active.length - 1)) ? ' active range' : ' range';
+              } else {
+                klass += (d[1] === 1) ? ' active' : ' halfday active';
+              }
             }
-          });
+          }.bind(this));
         }
         row.appendChild(buildNode('td', {}, buildNode('a', {
           'class': klass,

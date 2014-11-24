@@ -90,7 +90,7 @@ var Datepickr = (function() {
                 }
 
                 this.config.activeDays.sort(function(a, b) {
-                    return a[0] > b[0];
+                    return a[0] - b[0];
                 });
 
                 this.callback(this.config.activeDays);

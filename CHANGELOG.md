@@ -1,3 +1,7 @@
+### v1.1.1
+
+- [bug] Subtract in the sort method instead of a greaterThan check.
+
 ### v1.1.0
 
 - Add's add/remove funtionality for options. [#3](https://github.com/tristen/datepickr/issues/3)

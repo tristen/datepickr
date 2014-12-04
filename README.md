@@ -50,6 +50,7 @@ whether halfdays are enabled as an option or not.
 | maxDate | null | a timestamp representing a minimum date the pager should page |
 | halfDay | false | Enables halfday selection of dates |
 | omitPast | false | Prevent selecting days in the past |
+| omitFuture | false | Prevent selecting days in the future |
 | omitWeekends | false | Prevent selecting weekends |
 | omitDays | Empty array | Pass a timestamp array of dates to prevent the selection of |
 | activeDays | Empty array | Pass an array of arrayed dates ie. `[[[1413950400000,1],[1414468800000,0.5]` that are auto selected on load |

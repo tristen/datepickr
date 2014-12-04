@@ -140,6 +140,10 @@ var Datepickr = (function() {
         return new Date(year, month, day).getTime() < new Date().getTime();
     }
 
+    function isFuture(year, month, day) {
+        return new Date(year, month, day).getTime() > new Date().getTime();
+    }
+
     function isWeekend(year, month, day) {
         var d = new Date(year, month, day).getDay();
         return d === 0 || d === 6;
@@ -234,6 +238,7 @@ var Datepickr = (function() {
                     klass = 'today';
                 }
             } else if (this.config.omitPast && isPast(year, month, i)  ||
+                       this.config.omitFuture && isFuture(year, month, i) ||
                        this.config.omitWeekends && isWeekend(year, month, i) ||
                        this.config.omitDays && this.config.omitDays.length && isOmitted.call(this, year, month, i)) {
 
@@ -316,6 +321,7 @@ var Datepickr = (function() {
             maxDate: null,
             halfDay: false,
             omitPast: false,
+            omitFuture: false,
             omitWeekends: false,
             omitDays: [],
             activeDays: [],

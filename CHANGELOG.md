@@ -1,3 +1,7 @@
+### v1.2.0
+
+- [feature] Adds `omitFuture` option.
+
 ### v1.1.1
 
 - [bug] Subtract in the sort method instead of a greaterThan check.

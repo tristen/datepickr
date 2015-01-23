@@ -351,7 +351,7 @@ var Datepickr = (function() {
       });
     }
 
-    datepickr.opts = function(opts) {
+    datepickr.options = function(opts) {
       if (opts) {
         for (var key in opts) {
           if (this.config.hasOwnProperty(key)) {

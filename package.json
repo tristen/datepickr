@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "watchify index.js -s Datepickr -o dist/datepickr.js & serve",
-    "dist": "uglifyjs dist/datepickr.js > dist/datepickr.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

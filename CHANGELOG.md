@@ -1,3 +1,7 @@
+### v1.3.0
+
+- [feature] Add `utc` option.
+
 ### v1.2.0
 
 - [feature] Adds `omitFuture` option.

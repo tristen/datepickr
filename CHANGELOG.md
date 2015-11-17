@@ -1,3 +1,7 @@
+### v1.4.0
+
+- [feature] Add `singleSelection` option.
+
 ### v1.3.0
 
 - [feature] Add `utc` option.

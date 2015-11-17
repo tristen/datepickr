@@ -55,6 +55,7 @@ whether halfdays are enabled as an option or not.
 | omitDays | Empty array | Pass a timestamp array of dates to prevent the selection of |
 | activeDays | Empty array | Pass an array of arrayed dates ie. `[[[1413950400000,1],[1414468800000,0.5]` that are auto selected on load |
 | utc | false | Should date output be interpreted as UTC |
+| singleSelection | false | Limit days selection to one day. |
 
 To see examples of each option [see the demos](http://tristen.ca/datepickr/demo/).
 

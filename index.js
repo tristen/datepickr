@@ -78,8 +78,16 @@ var Datepickr = (function() {
               return date[0] !== d;
             });
           } else {
+            if ( this.config.singleSelection ) {
+                var daylinks = this.element.querySelectorAll('a');
+                Object.keys(daylinks).forEach(function (akey) {
+                    daylinks[akey].classList.remove('active', 'halfday');
+                });
+                this.config.activeDays = [[d, 1]];
+            } else {
+                this.config.activeDays.push([d, 1]);
+            }
             c.add('active');
-            this.config.activeDays.push([d, 1]);
           }
         }
 
@@ -320,7 +328,8 @@ var Datepickr = (function() {
       omitFuture: false,
       omitWeekends: false,
       omitDays: [],
-      activeDays: []
+      activeDays: [],
+      singleSelection: false
     };
 
     this.config.startYear = date.current.year(this.config);

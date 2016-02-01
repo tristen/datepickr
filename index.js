@@ -80,9 +80,9 @@ var Datepickr = (function() {
           } else {
             if ( this.config.singleSelection ) {
                 var daylinks = this.element.querySelectorAll('a');
-                Object.keys(daylinks).forEach(function (akey) {
-                    daylinks[akey].classList.remove('active', 'halfday');
-                });
+                for (i = 0; i < daylinks.length; i++) { 
+                    daylinks[i].classList.remove('active', 'halfday');
+                }
                 this.config.activeDays = [[d, 1]];
             } else {
                 this.config.activeDays.push([d, 1]);

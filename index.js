@@ -11,9 +11,15 @@ var Datepickr = (function() {
   var buildCache = [];
   var date = {
     current: {
-      year: function(opts)  { return currentDate.getPickrFullYear(opts); },
-      month: function(opts) { return currentDate.getPickrMonth(opts); },
-      day: function(opts)   { return currentDate.getPickrDate(opts); }
+      year: function(opts)  {
+        return currentDate.getPickrFullYear(opts);
+      },
+      month: function(opts) {
+        return currentDate.getPickrMonth(opts);
+      },
+      day: function(opts) {
+        return currentDate.getPickrDate(opts);
+      }
     },
     month: {
       string: function(month, months) {
@@ -52,7 +58,6 @@ var Datepickr = (function() {
         rebuildCalendar.call(this);
         break;
       case 'day':
-        var today = new Date().getTime();
         var d = new Date(this.year, this.month, e.target.textContent).getTime();
         var c = e.target.classList;
         if (this.config.halfDay) {
@@ -79,13 +84,13 @@ var Datepickr = (function() {
             });
           } else {
             if ( this.config.singleSelection ) {
-                var daylinks = this.element.querySelectorAll('a');
-                for (i = 0; i < daylinks.length; i++) { 
-                    daylinks[i].classList.remove('active', 'halfday');
-                }
-                this.config.activeDays = [[d, 1]];
+              var daylinks = this.element.querySelectorAll('a');
+              for (var i = 0; i < daylinks.length; i++) {
+                daylinks[i].classList.remove('active', 'halfday');
+              }
+              this.config.activeDays = [[d, 1]];
             } else {
-                this.config.activeDays.push([d, 1]);
+              this.config.activeDays.push([d, 1]);
             }
             c.add('active');
           }
@@ -114,7 +119,7 @@ var Datepickr = (function() {
     }
 
     if (content) {
-      if (typeof(content) === 'object') {
+      if (typeof content === 'object') {
         element.appendChild(content);
       } else {
         element.textContent = content;
@@ -188,7 +193,7 @@ var Datepickr = (function() {
     }, date.month.string(month, months) + ' ' + year);
   }
 
-  function buildMonths(config, month, year) {
+  function buildMonths() {
     var months = buildNode('div', {
       'class': 'months'
     });

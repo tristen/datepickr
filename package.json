@@ -1,10 +1,11 @@
 {
   "name": "datepickr",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A do it yourself Date picker.",
   "main": "index.js",
   "scripts": {
     "start": "watchify index.js -s Datepickr -o dist/datepickr.js & serve",
+    "build": "browserify index.js -s Datepickr | uglifyjs -c -m > dist/datepickr.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +24,9 @@
   },
   "homepage": "https://github.com/tristen/datepickr",
   "devDependencies": {
-    "uglify-js": "^2.4.15"
+    "browserify": "^13.0.0",
+    "serve": "^1.4.0",
+    "uglify-js": "^2.6.1",
+    "watchify": "^3.7.0"
   }
 }

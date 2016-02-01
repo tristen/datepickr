@@ -81,6 +81,14 @@ datepickr(el, function(res) {
 
 ```
 
+### Developing
+
+    npm install && npm start
+
+### Building
+
+    npm run build
+
 ### Credits
 
 Code originally based off of [datepickr](https://code.google.com/p/datepickr/).

@@ -239,7 +239,9 @@ var Datepickr = (function() {
       }
 
       if (isToday.call(this, year, month, i)) {
-        if (this.config.omitWeekends && isWeekend.call(this, year, month, i)) {
+        if (this.config.omitWeekends && isWeekend.call(this, year, month, i) ||
+          this.config.omitDays && this.config.omitDays.length && isOmitted.call(this, year, month, i)) {
+
           klass = 'today quiet';
           omit = true;
         } else {

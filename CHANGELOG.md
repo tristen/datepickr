@@ -1,3 +1,7 @@
+### v1.4.2
+
+- [chore] Upgrade devDependencies
+
 ### v1.4.1
 
 - [bug] Fix for Safari https://github.com/tristen/datepickr/pull/11
